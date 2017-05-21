@@ -9,23 +9,34 @@ public class Main {
         char[][] map = new char[3][3];
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                map[i][j] = 'd';
+                map[i][j] = ' ';
             }
         }
 
         int count = 0;
         while (count < 9) {
-            int x = s.nextInt();
-            int y = s.nextInt();
-            if (map[x][y] == 'd') {
-                if(count % 2 == 0){
+            int x, y;
+            if(count % 2 == 0){
+                System.out.println("It's X turn:");
+                x = s.nextInt();
+                y = s.nextInt();
+                if (map[x][y] == ' ') {
                     map[x][y] = 'X';
-                } else {
-                    map[x][y] = 'O';
+                }else
+                {
+                    System.out.println("Please enter other place");
+                    continue;
                 }
             } else {
-                System.out.println("Please enter other place");
-                continue;
+                System.out.println("It's O turn:");
+                x = s.nextInt();
+                y = s.nextInt();
+                if (map[x][y] == ' '){
+                    map[x][y] = 'O';}
+                else {
+                    System.out.println("Please enter other place");
+                    continue;
+                }
             }
             count++;
             if(count >= 4){
@@ -39,18 +50,20 @@ public class Main {
         }
         if(won == 0){
             System.out.println("O is won");
-        } else {
+        } else if(won == 1) {
             System.out.println("X is won");
+        } else {
+            System.out.println("Tie Game!");
         }
     }
 
     private static void printMap(char[][] map) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                System.out.print(map[i][j] + " ");
+                System.out.print(map[i][j] + " | ");
             }
             System.out.println();
-            System.out.println();
+            System.out.println("__|___|___|");
         }
     }
 
